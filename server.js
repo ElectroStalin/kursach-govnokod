@@ -39,8 +39,13 @@ app.route('/').get(function(req,res){
         console.log('The solution is: ', rows[0].solution);
     });
 
+<<<<<<< HEAD
     app.route('/new').get(function(req,res){
         res.render('NewTable.jade');
+=======
+    app.route('/').get(function(req,res){
+        res.render('NewTable');
+>>>>>>> 890133be294c6ee5838726f7ea9e9f45c7c85a07
 });
 //app.set(    'view engine', 'jade'                               );
 //app.use(    express.static('file')  );
