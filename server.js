@@ -12,6 +12,9 @@ var express         =       require(    'express'       ),
 var socket = require('engine.io-client')('ws://localhost:8080');
 var orm = require("orm");
 
+// эта твоя функция, о котой мы говорили, здесь будет например твой первый курсач
+var yourFunc = require('./function/func');
+
 app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
 app.use(    cookieParser()          );
@@ -39,14 +42,31 @@ app.route('/').get(function(req,res){
         console.log('The solution is: ', rows[0].solution);
     });
 
-<<<<<<< HEAD
     app.route('/new').get(function(req,res){
         res.render('NewTable.jade');
-=======
+    });
+
+
+    /* путь сам установишь! тут вызываем твою функцию и отправляем в нее, например то, что плучили из вне
+    *  обычно это храниться в req.body - тело запроса пользователя
+    *  как видишь первым аргументом мы передали тело, то есть внутри этой функции (она описана в стороннем файле) мы можешь ебать это
+    *  тело
+    *  и чтобы ебля имела конец и результат, мы заведомо создали функцию обратного вызова, которая вернет нам хоть что-то после ебли,
+    *  а затем, проанализировав (в данном случае это if)  мы отдаем клиенту что-нить, в данном случае статус об ошибке/успешном выполении.
+    */
+    app.route('/ololo').get(function(req,res){
+        yourFunc(req.body,function(result){
+            if(result.error){
+                res.sendStatus(403);
+            }else{
+                res.sendStatus(200);
+            }
+        })
+    });
+
     app.route('/').get(function(req,res){
         res.render('NewTable');
->>>>>>> 890133be294c6ee5838726f7ea9e9f45c7c85a07
-});
+    });
 //app.set(    'view engine', 'jade'                               );
 //app.use(    express.static('file')  );
 //app.use(    express.static('file/other')  );
