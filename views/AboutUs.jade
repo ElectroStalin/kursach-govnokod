@@ -20,20 +20,20 @@ html
                             button( type='submit' class='btn btn-primary') ОК
             nav( class='nav navbar-default')
                 ul( class='nav navbar-nav')
-                    li( class='active')
+                    li
                         a( href='/') Главная
+                    li( class='active')
+                        a( href='/AboutUs') О Нас
                     li
-                        a( href='/AboutUs/') О Нас
-                    li
-                        a( href='/new/') Добавить тест
+                        a( href='/new') Добавить тест
 
             div(class='heading')
-                h1 Добро пожаловать
+                h1 Добавить тест
             div(class='row')
                 aside(class='col-md-7')
                     ul( class='list-group submenu')
                         li(class='list-group-item ')
-                            a( href='/Theory') О теории тестов
+                            a( href='/Theory/') О теории тестов
                         li(class='list-group-item')
                             a( href='/ClassicTheory/') Классическая теория
                         li(class='list-group-item')
@@ -42,9 +42,6 @@ html
                             a( href='/Feedback/') Оставить отзыв
 
                 aside(class='col-md-17')
-                    div( class='jumbotron')
-                        blockquot
-                            p Здесь вы найдете исчерпывающую информацию о теории тестов, различных методов оценивания тестов, а так же сможете проверить надежность вашего собственного теста.
 
         footer
 

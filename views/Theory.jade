@@ -1,0 +1,50 @@
+docktype
+html
+    head
+        meta(charset='utf8')
+        title Main
+        meta(
+        name='viewport'
+        content='width=devise-width, install-scale=1.0')
+        style
+            include ../css/style.css
+    body
+        div(class='wrapper container')
+            header
+                img( src='../Images/head.png' alt='logo')
+                form( name='search' action='#' method='get' class='form-inline form-search pull-right')
+                    div( class='input-group')
+                        label( class='sr-only' for='searchInput')
+                        input( class='form-control' id='searchInput' type='text' name='search' placeholder='поиск')
+                        div( class='input-group-btn')
+                            button( type='submit' class='btn btn-primary') ОК
+            nav( class='nav navbar-default')
+                ul( class='nav navbar-nav')
+                    li
+                        a( href='/') Главная
+                    li
+                        a( href='/AboutUs') О Нас
+                    li
+                        a( href='/new') Добавить тест
+
+            div(class='heading')
+                h1 Добавить тест
+            div(class='row')
+                aside(class='col-md-7')
+                    ul( class='list-group submenu')
+                        li(class='list-group-item active')
+                            a( href='/Theory') О теории тестов
+                        li(class='list-group-item')
+                            a( href='/ClassicTheory/') Классическая теория
+                        li(class='list-group-item')
+                            a( href='/ModernTheory/') Современная теория
+                        li(class='list-group-item')
+                            a( href='/Feedback/') Оставить отзыв
+
+                aside(class='col-md-17')
+                    div( class='jumbotron')
+                        blockquot
+                            p Первые научные труды по теории тестов появились в начале XX века, на стыке психологии, социологии, педагогики и других так называемых поведенческих наук. Одними из основоположников теории тестов были ученые Ф.Гальтон, Дж.Кеттел. Вопросам теории тестов посвящены труды В.С.Аванесова, А.Анастази, Х.Зиверта, и других.Зарубежные психологи называют теорию тестов психометрикой, а педагоги - педагогическим измерением. В русском языке принято называть эту науку тестологией. Тестология - наука о тестах. Тест - это краткое стандартизированное испытание, предназначенное как для получения объективной количественной оценки результатов обучения, так и для распознавания интересующих нас особенностей и качеств личности. Основы классической теории тестов заложены в трудах британского психолога Ч. Спирмена, в которых он обосновал, что тестовые оценки характеристик людей всегда содержат ошибочные компоненты измерения. Позже многие известные ученые, особенно Гилфорд, Галликсен, Магнуссон, Лорд и Новик также занимались разработкой этой модели. В результате сформировалась теория, получившая название классической теории тестирования.
+
+footer
+

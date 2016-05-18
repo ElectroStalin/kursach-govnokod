@@ -13,7 +13,7 @@ var socket = require('engine.io-client')('ws://localhost:8080');
 var orm = require("orm");
 
 // эта твоя функция, о котой мы говорили, здесь будет например твой первый курсач
-var yourFunc = require('./function/func');
+var yourFunc = require('./functions/func');
 
 app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
@@ -24,9 +24,24 @@ app.set('view engine', 'jade');
 app.route('/').get(function(req,res){
     res.render('index');
 });
-
-
-
+app.route('/new').get(function(req,res){
+    res.render('newTable.jade');
+});
+app.route('/AboutUs').get(function(req,res){
+    res.render('AboutUs.jade');
+});
+app.route('/Theory').get(function(req,res){
+    res.render('Theory.jade');
+});
+app.route('/ClassicTheory').get(function(req,res){
+    res.render('ClassicTheory.jade');
+});
+app.route('/ModernTheory').get(function(req,res){
+    res.render('ModernTheory.jade');
+});
+app.route('/Feedback').get(function(req,res){
+    res.render('Feedback.jade');
+});
     var mysql = require('mysql');
     var pool  = mysql.createPool({
         connectionLimit : 10,
@@ -42,9 +57,6 @@ app.route('/').get(function(req,res){
         console.log('The solution is: ', rows[0].solution);
     });
 
-    app.route('/new').get(function(req,res){
-        res.render('NewTable.jade');
-    });
 
 
     /* путь сам установишь! тут вызываем твою функцию и отправляем в нее, например то, что плучили из вне
@@ -64,9 +76,6 @@ app.route('/').get(function(req,res){
         })
     });
 
-    app.route('/').get(function(req,res){
-        res.render('NewTable');
-    });
 //app.set(    'view engine', 'jade'                               );
 //app.use(    express.static('file')  );
 //app.use(    express.static('file/other')  );

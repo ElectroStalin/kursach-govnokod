@@ -1,0 +1,106 @@
+@import "less/bootstrap.less";
+@import "variables.less";
+p {
+  margin: 20px 0;
+}
+
+.form-control {
+  box-shadow: none;
+}
+
+.btn {
+  font-family: @brand-font;
+}
+body {
+  border-top: 5px solid #7e7e7e;
+  background-image: url(../Images/bg.png);
+
+  .jumbotron {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+
+    blockquote {
+      border-left: none;
+
+      p {
+        font: 400 italic 44px @brand-font;
+        text-transform: uppercase;
+        margin-bottom: 0;
+      }
+
+    }
+  }
+
+  .wrapper {
+    padding: 0 0 50px 0;
+  }
+  .navbar a {
+    text-transform: uppercase;
+    font: 20px @brand-font;
+
+  }
+  header {
+    padding: 70px 0;
+  }
+    .form-search {
+      width: 300px;
+
+
+  }
+  .heading {
+    height: 40px;
+    background: transparent url(../Images/bg2.png);
+    margin: 30px 0;
+    padding-left: 20px;
+
+    h1 {
+      display: inline-block;
+      color: #7e7e7e;
+      font: normal 40px/40px 'Monotype Corsiva', sans-serif;
+      background: url(../Images/bg.png);
+      margin: 0;
+      padding: 0 10px;
+      text-transform: uppercase;
+    }
+  }
+  .submenu {
+    margin-bottom: 30px;
+
+    li {
+      display: list-item;
+      font: 300 20px @brand-font;
+      list-style-position: inside;
+      list-style-type: square;
+      padding: 10px;
+      text-transform: uppercase;
+
+      &.active {
+        color: @brand-primary;
+      }
+
+      a {
+        color: @text-color;
+        text-decoration: none;
+
+        &:active {
+          color: @brand-primary;
+        }
+      }
+    }
+  }
+
+  .panel {
+    box-shadow: none;
+    .panel-heading {
+      font: 20px @brand-font;
+      text-transform: uppercase;
+      padding: 10px;
+    }
+
+    .panel-body {
+      padding: 10px;
+    }
+  }
+}
+
