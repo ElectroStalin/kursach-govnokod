@@ -43,12 +43,12 @@ html
 
                 aside(class='col-md-17')
 
-                    form( action='' method='get' class='pull-left')
-                        p Количество вопросов
-                        input( class='form-control' type='number' name='questions' placeholder='0' min="1" )
-                        p Количество тестируемых
-                        input( class='form-control' type='number' name='students' placeholder='0' min="1")
-                        button( type="submit" class="btn btn-primary") OK
+                    form( action='http://localhost:9000/Excel uploaded files' method='post' encType="multipart/form-data"
+                            class='pull-left')
+                        input(type='file' name='sampleFile')
+                        input(type='submit' value='Upload!')
 
-    footer
+
+
+
 

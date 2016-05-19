@@ -9,6 +9,9 @@ var express         =       require(    'express'       ),
     bodyParser      =       require(    'body-parser'   ),
     cookieParser    =       require(    'cookie-parser' ),
     jade            =       require(    'jade'          );
+var fileUpload      =       require('express-fileupload');
+var app = express();
+
 var socket = require('engine.io-client')('ws://localhost:8080');
 var orm = require("orm");
 
@@ -18,9 +21,29 @@ var yourFunc = require('./functions/func');
 app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
 app.use(    cookieParser()          );
-app.use('/Images',express.static('Images'))
+app.use('/Images',express.static('Images'));
+app.use(fileUpload());
 app.set('trust proxy');
 app.set('view engine', 'jade');
+//дичь для заливания файликоов на серв
+app.post('/upload', function(req, res) {
+    var sampleFile;
+
+    if (!req.files) {
+        res.send('No files were uploaded.');
+        return;
+    }
+
+    sampleFile = req.files.sampleFile;
+    sampleFile.mv('/Excel uploaded files/', function(err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send('File uploaded!');
+        }
+    });
+});
 
 app.route('/').get(function(req,res){
     res.render('index');
@@ -45,7 +68,13 @@ app.route('/Feedback').get(function(req,res){
 });
 app.route('/Result').get(function(req,res){
     res.render('Result.jade');
+
 });
+app.route('/Check').get(function(req,res){
+    res.render('CheckTest.jade');
+
+});
+
     var mysql = require('mysql');
     var pool  = mysql.createPool({
         connectionLimit : 10,
@@ -80,26 +109,7 @@ app.route('/Result').get(function(req,res){
         })
     });
 
-//app.set(    'view engine', 'jade'                               );
-//app.use(    express.static('file')  );
-//app.use(    express.static('file/other')  );
-//app.use(    express.static('node_modules/jquery/dist')  );
-//app.use(    express.static('node_modules/backbone')  );
-//app.use(    express.static('node_modules/requirejs')  );
-//app.use(    '/file/js',             express.static('js')        );
-//app.use(    '/file/js',             express.static('auth/js/')  );
-//app.use(    '/file/css',            express.static('css')       );
-//app.use(    '/file/other',          express.static('file')      );
-//app.use(    '/file/img',            express.static('img')       );
 
-//app.use(orm.express("mysql://root:poltava1100@prog-q.xyz/dverkoff", {
-  //  define: function (db, models, next) {
-    //    for(var i in DBShema(db)){
-      //      models[i] = DBShema(db)[i];
-       // }
-        //next();
-    //}
-//}));
 
 app.listen(9000);
 console.log('server start!');
