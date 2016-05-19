@@ -12,7 +12,7 @@ html
         div(class='wrapper container')
             header
                 img( src='../Images/head.png' alt='logo')
-                form( name='search' action='#' method='get' class='form-horizontal pull-right')
+                form( name='search' action='#' method='get' class='form-inline form-search pull-right')
                     div( class='input-group')
                         label( class='sr-only' for='searchInput')
                         input( class='form-control' id='searchInput' type='text' name='search' placeholder='поиск')
@@ -42,7 +42,7 @@ html
                             a( href='/Feedback/') Оставить отзыв
 
                 aside(class='col-md-17')
-                    form( name='feedback' action='#' method='get' class='form-horizontal form-feedback pull-left')
+                    form( name='feedback' action='#' method='get' class='form-horizontal pull-left')
                         div( class='input-group')
                             label( class='sr-only' for='inputName')
                             input(class='form-control' id='inputName' name='name' placeholder='имя' pattern='^[a-zA-Z-А-Яа-яЁё\s]+$')
@@ -52,5 +52,5 @@ html
                         div(class='sbm')
                             button( type="submit" class="btn btn-primary") ОТПРАВИТЬ
 
-footer
+
 
