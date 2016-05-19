@@ -18,6 +18,7 @@ var yourFunc = require('./functions/func');
 app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
 app.use(    cookieParser()          );
+app.use('/Images',express.static('Images'))
 app.set('trust proxy');
 app.set('view engine', 'jade');
 
