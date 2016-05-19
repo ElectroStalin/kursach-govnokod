@@ -12,7 +12,7 @@ html
         div(class='wrapper container')
             header
                 img( src='../Images/head.png' alt='logo')
-                form( name='search' action='#' method='get' class='form-inline form-search pull-right')
+                form( name='search' action='#' method='get' class='form-horizontal pull-right')
                     div( class='input-group')
                         label( class='sr-only' for='searchInput')
                         input( class='form-control' id='searchInput' type='text' name='search' placeholder='поиск')
@@ -20,7 +20,7 @@ html
                             button( type='submit' class='btn btn-primary') ОК
             nav( class='nav navbar-default')
                 ul( class='nav navbar-nav')
-                    li
+                    li( class='active')
                         a( href='/') Главная
                     li
                         a( href='/AboutUs') О Нас
@@ -42,8 +42,15 @@ html
                             a( href='/Feedback/') Оставить отзыв
 
                 aside(class='col-md-17')
-                    div( class='jumbotron')
-                        blockquot
-                            p
+                    form( name='feedback' action='#' method='get' class='form-horizontal form-feedback pull-left')
+                        div( class='input-group')
+                            label( class='sr-only' for='inputName')
+                            input(class='form-control' id='inputName' name='name' placeholder='имя' pattern='^[a-zA-Z-А-Яа-яЁё\s]+$')
+                        div( class='input-group')
+                            label( class='sr-only' for='inputName')
+                            textarea( class='form-control' name='comment' cols='100' rows='6')
+                        div(class='sbm')
+                            button( type="submit" class="btn btn-primary") ОТПРАВИТЬ
+
 footer
 
