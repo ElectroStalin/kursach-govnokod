@@ -9,8 +9,10 @@ var express         =       require(    'express'       ),
     bodyParser      =       require(    'body-parser'   ),
     cookieParser    =       require(    'cookie-parser' ),
     jade            =       require(    'jade'          );
-var fileUpload      =       require('express-fileupload');
+//var fileUpload      =       require('express-fileupload');
 var app = express();
+var upload = multer({ dest: 'Excel/' })
+
 
 var socket = require('engine.io-client')('ws://localhost:8080');
 var orm = require("orm");
@@ -22,11 +24,12 @@ app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
 app.use(    cookieParser()          );
 app.use('/Images',express.static('Images'));
-app.use(fileUpload());
+//app.use('/Excel',express.static('Excel'));
+//app.use(fileUpload());
 app.set('trust proxy');
 app.set('view engine', 'jade');
 //дичь для заливания файликоов на серв
-app.post('/upload', function(req, res) {
+/*app.post('/Excel', function(req, res) {
     var sampleFile;
 
     if (!req.files) {
@@ -35,7 +38,7 @@ app.post('/upload', function(req, res) {
     }
 
     sampleFile = req.files.sampleFile;
-    sampleFile.mv('/Excel uploaded files/', function(err) {
+    sampleFile.mv('/Excel.xlsx', function(err) {
         if (err) {
             res.status(500).send(err);
         }
@@ -44,6 +47,15 @@ app.post('/upload', function(req, res) {
         }
     });
 });
+*/
+
+
+app.post('/Excel', upload.single('sampleFile'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+});
+
+
 
 app.route('/').get(function(req,res){
     res.render('index');
