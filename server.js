@@ -11,7 +11,7 @@ var express         =       require(    'express'       ),
     jade            =       require(    'jade'          );
 //var fileUpload      =       require('express-fileupload');
 var app = express();
-var upload = multer({ dest: 'Excel/' })
+var upload = multer({ dest: 'Excel/' });
 
 
 var socket = require('engine.io-client')('ws://localhost:8080');
@@ -28,29 +28,22 @@ app.use('/Images',express.static('Images'));
 //app.use(fileUpload());
 app.set('trust proxy');
 app.set('view engine', 'jade');
+
+
 //дичь для заливания файликоов на серв
-/*app.post('/Excel', function(req, res) {
-    var sampleFile;
 
-    if (!req.files) {
-        res.send('No files were uploaded.');
-        return;
-    }
 
-    sampleFile = req.files.sampleFile;
-    sampleFile.mv('/Excel.xlsx', function(err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send('File uploaded!');
-        }
+app.post('/Excel', upload.fields([{name: 'name'}, {name: 'sampleFile', maxCount: 1}]), function (req, res, next) {
+    var img = req.files.sampleFile[0];
+    var path = __dirname+"/ExcelResult";
+    fs.mkdir(path, function (err) {
+        if (err) return next(err);
+        var newPath = path + '/' + img.originalname;
+        fs.rename(img.path, newPath, function (err) {
+            err ? res.sendStatus(400)
+            :res.sendStatus(200);
+        });
     });
-});
-*/
-
-
-app.post('/Excel', upload.single('sampleFile'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
 });
