@@ -19,7 +19,7 @@ var socket = require('engine.io-client')('ws://localhost:8080');
 var orm = require("orm");
 
 // эта твоя функция, о котой мы говорили, здесь будет например твой первый курсач
-var yourFunc = require('./functions/func');
+var Check = require('./functions/func.js');
 
 app.use(    logger('dev')      );
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true }));
@@ -41,12 +41,21 @@ app.post('/Excel', upload.fields([{name: 'name'}, {name: 'sampleFile', maxCount:
         if (err) return next(err);
         var newPath = path + '/' + img.originalname;
         fs.rename(img.path, newPath, function (err) {
-            err ? res.sendStatus(400)
-            :res.sendStatus(200);
+            if(err)res.sendStatus(400);
+            else{
+                 Check(req.body,function(result){
+                        if(result.error){
+                            res.sendStatus(403);
+                        }else{
+                            res.sendStatus(200);
+                        }
+                    })
+
+
+            }
         });
     });
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
+
 });
 
 
@@ -72,10 +81,10 @@ app.route('/ModernTheory').get(function(req,res){
 app.route('/Feedback').get(function(req,res){
     res.render('Feedback.jade');
 });
-app.route('/Result').get(function(req,res){
-    res.render('Result.jade');
+//app.route('/Result').get(function(req,res){
+  //  res.render('Result.jade');
 
-});
+//});
 app.route('/Check').get(function(req,res){
     res.render('CheckTest.jade');
 
@@ -114,7 +123,16 @@ app.route('/Check').get(function(req,res){
             }
         })
     });
-
+app.route('/ololol').get(function(req,res){
+    Check(req.body,function(result){
+        if(result.error){
+            res.sendStatus(403);
+        }else{
+            res.sendStatus(200);
+        }
+    })
+    res.render('CheckTest.jade')
+});
 
 
 app.listen(9000);
