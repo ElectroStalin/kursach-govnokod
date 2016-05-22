@@ -30,7 +30,7 @@ html
                         a( href='/Check/') Загрузить тест
 
             div(class='heading')
-                h1 Добавить тест
+                h1 Загрузить тест
             div(class='row')
                 aside(class='col-md-7')
                     ul( class='list-group submenu')
@@ -44,11 +44,12 @@ html
                             a( href='/Feedback/') Оставить отзыв
 
                 aside(class='col-md-17')
-
+                    p Ваша таблица должна быть оформлена как показано на рисунке
+                    img( src='../Images/example.png' class=' img-thumbnail ' alt='logo')
                     form( action='http://localhost:9000/Excel' method='post' encType="multipart/form-data"
                             class='pull-left')
-                        input(type='file' class="btn btn-primary" name='sampleFile')
-                        input(type='submit' class="btn-success" value='Загрузить')
+                        input(type='file' class='btn btn-default btn-lg active' name='sampleFile')
+                        input(type='submit' class='btn btn-primary  btn-lg ' value='Загрузить')
 
 
 

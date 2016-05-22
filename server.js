@@ -9,7 +9,6 @@ var express         =       require(    'express'       ),
     bodyParser      =       require(    'body-parser'   ),
     cookieParser    =       require(    'cookie-parser' ),
     jade            =       require(    'jade'          );
-    var mkdirp = require('mkdirp');
 //var fileUpload      =       require('express-fileupload');
 var app = express();
 var upload = multer({ dest: 'Excel/' });
@@ -37,7 +36,7 @@ app.set('view engine', 'jade');
 app.post('/Excel', upload.fields([{name: 'name'}, {name: 'sampleFile', maxCount: 1}]), function (req, res, next) {
     var img = req.files.sampleFile[0];
     var path = __dirname+"/ExcelResult";
-    mkdirp(path,function (err) {
+    fs.mkdir(path, function (err) {
         if (err) return next(err);
         var newPath = path + '/' + img.originalname;
         fs.rename(img.path, newPath, function (err) {
@@ -81,20 +80,20 @@ app.route('/Check').get(function(req,res){
 
 });
 
-    //var mysql = require('mysql');
-    //var pool  = mysql.createPool({
-    //    connectionLimit : 10,
-    //    host            : 'localhost',
-    //    user            : 'root',
-    //    password        : '',
-    //    database        : 'testservice'
-    //});
-    //
-    //pool.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-    //    if (err) throw err;
-    //
-    //    console.log('The solution is: ', rows[0].solution);
-    //});
+    var mysql = require('mysql');
+    var pool  = mysql.createPool({
+        connectionLimit : 10,
+        host            : 'localhost',
+        user            : 'root',
+        password        : '',
+        database        : 'testservice'
+    });
+
+    pool.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+        if (err) throw err;
+
+        console.log('The solution is: ', rows[0].solution);
+    });
 
 
 
