@@ -8,6 +8,7 @@ var express         =       require(    'express'       ),
     logger          =       require(    'morgan'        ),
     bodyParser      =       require(    'body-parser'   ),
     cookieParser    =       require(    'cookie-parser' ),
+    mkdirp    =       require(    'mkdirp' ),
     jade            =       require(    'jade'          );
 //var fileUpload      =       require('express-fileupload');
 var app = express();
@@ -36,7 +37,7 @@ app.set('view engine', 'jade');
 app.post('/Excel', upload.fields([{name: 'name'}, {name: 'sampleFile', maxCount: 1}]), function (req, res, next) {
     var img = req.files.sampleFile[0];
     var path = __dirname+"/ExcelResult";
-    fs.mkdir(path, function (err) {
+    mkdirp(path, function (err) {
         if (err) return next(err);
         var newPath = path + '/' + img.originalname;
         fs.rename(img.path, newPath, function (err) {
