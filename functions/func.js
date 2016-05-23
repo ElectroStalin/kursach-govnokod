@@ -1,12 +1,15 @@
 /**
  * Created by Владимир on 17.05.2016.
  */
+
+var xlsx = require('node-xlsx');
+var fs = require('fs');
 module.exports = function(arg1, callback){
 
 
 
-    xlsx = require('node-xlsx');
-    var obj = xlsx.parse('../ExcelResult/example3.xlsx');
+
+    var obj = xlsx.parse(fs.readFileSync('./ExcelResult/example3.xlsx'));
 
 
     function matrixArray(rows,columns){
