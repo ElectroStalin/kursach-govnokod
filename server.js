@@ -81,10 +81,10 @@ app.route('/ModernTheory').get(function(req,res){
 app.route('/Feedback').get(function(req,res){
     res.render('Feedback.jade');
 });
-//app.route('/Result').get(function(req,res){
-  //  res.render('Result.jade');
+app.route('/Result').get(function(req,res){
+   res.render('Result.jade');
 
-//});
+});
 app.route('/Check').get(function(req,res){
     res.render('CheckTest.jade');
 
